@@ -1,0 +1,36 @@
+# Reproducible Research: Peer Assessment 1
+
+## Loading and preprocessing the data
+
+In the repository, data is available as a .csv-file compressed into a .zip-file file. If the zip-file has not been unpacked already, first unzip it. We then read the .csv file into a variable, which we shall call ```activity.data```.
+
+
+```r
+if (!file.exists('activity.csv')) 
+    unzip("activity.zip")
+activity.data <- read.csv("activity.csv")
+```
+
+## What is mean total number of steps taken per day?
+
+
+```r
+# Calculated value to be reported: first calculate total for each day, then calculate the mean
+total_nr_of_steps_per_day <- aggregate(activity.data$steps, by=list(activity.data$date), FUN=sum)
+mean_total_nr_steps_per_day <- mean(total_nr_of_steps_per_day$x, na.rm=TRUE)
+
+# Setup reporting options
+options(digits = 2, scipen = 6) # Prevent scientific notation,
+```
+
+The *mean* total number of steps taken per day is **10766.19**.
+
+## What is the average daily activity pattern?
+
+
+
+## Imputing missing values
+
+
+
+## Are there differences in activity patterns between weekdays and weekends?
