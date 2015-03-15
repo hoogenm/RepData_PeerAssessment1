@@ -1,3 +1,15 @@
+# Reproducible - Assignment 1 - Submission
+
+This repository contains the submission for peer assessment 1 of the
+course. The generated ```.md``` file is ```PA1_template.md```.
+My source file can be found in ```PA1_template.Rmd```.
+
+You will find alle four required plots in the subfolder ```/figure```.
+You can also view them directly (inline) in ```PA1_template.md```.
+
+Below you will find the original README.md from R.D. Peng's
+repository:
+
 ## Introduction
 
 It is now possible to collect a large amount of data about personal
