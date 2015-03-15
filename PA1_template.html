@@ -246,7 +246,8 @@ mean_total_nr_steps_per_day &lt;- mean(total_nr_of_steps_per_day$x, na.rm=TRUE)
 <pre><code class="r">## Calculations
 avg_steps_for_each_interval &lt;- aggregate(steps ~ interval, data=activity.data, FUN=mean)
 interval_with_max_steps &lt;-
-  avg_steps_for_each_interval[avg_steps_for_each_interval$steps==max(avg_steps_for_each_interval$steps),]
+    avg_steps_for_each_interval[avg_steps_for_each_interval$steps ==
+                                max(avg_steps_for_each_interval$steps), ]
 
 ## Plot daily activity pattern
 plot(x=avg_steps_for_each_interval$interval,
@@ -297,15 +298,17 @@ Also, we will round the estimate (as a number of steps can in reality only be a 
 
 <pre><code class="r">names(avg_steps_for_each_interval) &lt;- c(&#39;interval&#39;, &#39;estimate&#39;)
 activity.data.plus.estimate &lt;- merge(activity.data, avg_steps_for_each_interval)
-activity.data$steps &lt;- replace(activity.data$steps,
-                               is.na(activity.data$steps),
-                               round(activity.data.plus.estimate$estimate[is.na(activity.data$steps)],
-                                     digits=0))
+activity.data$steps &lt;-
+    replace(activity.data$steps,
+            is.na(activity.data$steps),
+            round(activity.data.plus.estimate$estimate[is.na(activity.data$steps)], digits=0))
 </code></pre>
 
 <h3>Step 4: Make a histogram of total number of steps per day</h3>
 
-<pre><code class="r">total_nr_of_steps_per_day2 &lt;- aggregate(activity.data$steps, by=list(activity.data$date), FUN=sum)
+<pre><code class="r">total_nr_of_steps_per_day2 &lt;- aggregate(activity.data$steps,
+                                        by=list(activity.data$date),
+                                        FUN=sum)
 hist(total_nr_of_steps_per_day2$x,
      main=&quot;Histogram of total number of steps per day&quot;,
      xlab=&quot;Total number of steps per day&quot;)
@@ -352,7 +355,9 @@ activity.data &lt;-
                                                   to=c(&quot;weekend&quot;, &quot;weekday&quot;, &quot;weekday&quot;, &quot;weekday&quot;,
                                                        &quot;weekday&quot;, &quot;weekday&quot;, &quot;weekend&quot;))))
 # Use lattice to make a plot like in the example of R.D. Peng.
-pattern.weekday.or.weekend &lt;- aggregate(steps ~ interval + weekday.or.weekend, activity.data, FUN=mean)
+pattern.weekday.or.weekend &lt;- aggregate(steps ~ interval + weekday.or.weekend,
+                                        activity.data,
+                                        FUN=mean)
 library(lattice)
 xyplot(steps ~ interval | weekday.or.weekend, data = pattern.weekday.or.weekend, layout = c(1,2),
        panel = function(x, y) {
