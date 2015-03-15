@@ -1,4 +1,6 @@
-# Reproducible - Assignment 1 - Submission
+# Reproducible Research: Assignment 1 - Submission
+
+## Comments for reviewers
 
 This repository contains the submission for peer assessment 1 of the
 course. The generated ```.md``` file is ```PA1_template.md```.
