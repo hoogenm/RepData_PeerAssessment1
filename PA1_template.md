@@ -186,7 +186,8 @@ xyplot(steps ~ interval | weekday.or.weekend, data = pattern.weekday.or.weekend,
        panel = function(x, y) {
          panel.grid(h = 1, v = 2)
          panel.xyplot(x, y, type = "l")
-       })
+       },
+       main="Panel plot: weekend versus weekday")
 ```
 
 ![plot of chunk panel_plot](figure/panel_plot-1.png) 
