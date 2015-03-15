@@ -30,8 +30,9 @@ total_nr_of_steps_per_day <- aggregate(activity.data$steps, by=list(activity.dat
 mean_total_nr_steps_per_day <- mean(total_nr_of_steps_per_day$x, na.rm=TRUE)
 ```
 
-The *mean* total number of steps taken per day is **10766.19**.
+The **mean** total number of steps taken per day is *10766.19*.
 
+Also report the **median**:
 
 ```r
 median(total_nr_of_steps_per_day$x, na.rm=TRUE)
@@ -58,14 +59,14 @@ hist(total_nr_of_steps_per_day$x,
 ## Calculations
 avg_steps_for_each_interval <- aggregate(steps ~ interval, data=activity.data, FUN=mean)
 interval_with_max_steps <-
-    avg_steps_for_each_interval[avg_steps_for_each_interval$steps==max(avg_steps_for_each_interval$steps),]
+  avg_steps_for_each_interval[avg_steps_for_each_interval$steps==max(avg_steps_for_each_interval$steps),]
 
 ## Plot daily activity pattern
 plot(x=avg_steps_for_each_interval$interval,
      y=avg_steps_for_each_interval$steps, type="l",
      xlab="Intervals from 0000(-0005) to 2355(-2400)",
      ylab="Nr of steps (average across all days)",
-     main="Average daily activity pattern")
+     main="Average daily activity pattern\nTime Series plot")
 ## Visually depict the interval that has max nr of steps (on avg across all days)
 # First draw a vertical line
 segments(x0=interval_with_max_steps$interval, y0=0,
@@ -84,7 +85,7 @@ days in the dataset.
 ## Imputing missing values
 
 ### Step 1: Calculate and report total number of missing values
-Calculate *the number of rows with missing values* as the number of incomplete cases (which is the same number).
+Calculate *the number of rows with missing values* as the number of incomplete cases (which is the same number):
 
 ```r
 number_of_missing_values <- sum(!complete.cases(activity.data))
@@ -128,6 +129,9 @@ hist(total_nr_of_steps_per_day2$x,
 
 ![plot of chunk histogram_missing_vals_imputed](figure/histogram_missing_vals_imputed-1.png) 
 
+Show both the **mean** and the **median** for the total number of steps per day (across all the days observed):
+
+
 ```r
 mean(total_nr_of_steps_per_day2$x, na.rm=TRUE)
 ```
@@ -152,14 +156,17 @@ If you count the total number of steps per day with NA values *replaced*, the me
 ```r
 # Add a weekdays factor variable:
 
-#   I used ```format()``` and ```as.POSIXct()``` because they are not locale-specific and are available in the base-package.
-#   I preferred this approach to ```weekdays()```, which is suggested by the assignment but is locale-dependent, so
-#   is not guaranteed to work on your system, depending on your locale (or any changes to it)
+#   I used ```format()``` and ```as.POSIXct()``` because they are not locale-specific and
+#   are available in the base-package. I preferred this approach to ```weekdays()```, which is
+#   suggested by the assignment but is locale-dependent, so it is not guaranteed to work on
+#  your system, depending on your locale (or any changes to it)
 
-# Create a vector that for each observation contains the day of the week as number 0-6 (where 0=sunday, ... ,6=saturday)
+# Create a vector that for each observation contains the day of the week as a number between
+# 0 and 6 inclusive (where 0=sunday, ... , 6=saturday)
 day.number <- format(strptime(activity.data$date, format='%Y-%m-%d'), format='%w')
 
-# Now map the day.number to weekday.or.weekend factor variable as required, and bind it into activity.data
+# Now map the day.number to weekday.or.weekend factor variable as required,
+# and bind it into activity.data
 library(plyr) # Use plyr package for recoding the values
 activity.data <-
    cbind(activity.data,
