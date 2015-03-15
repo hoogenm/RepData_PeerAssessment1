@@ -1,4 +1,9 @@
-# Reproducible Research: Peer Assessment 1
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
 
 ## Loading and preprocessing the data
 
@@ -44,7 +49,7 @@ hist(total_nr_of_steps_per_day$x,
      xlab="Total number of steps per day")
 ```
 
-![](PA1_template_files/figure-html/histogram_1-1.png) 
+![plot of chunk histogram_1](figure/histogram_1-1.png) 
 
 ## What is the average daily activity pattern?
 
@@ -70,7 +75,7 @@ text(x=interval_with_max_steps$interval, y=interval_with_max_steps$steps, col='r
      labels=paste("Max at interval", interval_with_max_steps$interval), pos=4, offset=0.2)
 ```
 
-![](PA1_template_files/figure-html/time_series_plot-1.png) 
+![plot of chunk time_series_plot](figure/time_series_plot-1.png) 
 
 The interval (starting at) **835** contains
 the maximum (206.17) number of steps on average across all the
@@ -121,7 +126,7 @@ hist(total_nr_of_steps_per_day2$x,
      xlab="Total number of steps per day")
 ```
 
-![](PA1_template_files/figure-html/histogram_missing_vals_imputed-1.png) 
+![plot of chunk histogram_missing_vals_imputed](figure/histogram_missing_vals_imputed-1.png) 
 
 ```r
 mean(total_nr_of_steps_per_day2$x, na.rm=TRUE)
@@ -172,4 +177,4 @@ xyplot(steps ~ interval | weekday.or.weekend, data = pattern.weekday.or.weekend,
        })
 ```
 
-![](PA1_template_files/figure-html/panel_plot-1.png) 
+![plot of chunk panel_plot](figure/panel_plot-1.png) 
