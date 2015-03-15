@@ -35,7 +35,7 @@ median(total_nr_of_steps_per_day$x, na.rm=TRUE)
 ```
 
 ### 2. Histogram of the total number of steps taken each day
-```{r}
+```{r histogram_1}
 hist(total_nr_of_steps_per_day$x,
      main="Histogram of total number of steps per day",
      xlab="Total number of steps per day")
@@ -43,7 +43,7 @@ hist(total_nr_of_steps_per_day$x,
 
 ## What is the average daily activity pattern?
 
-```{r}
+```{r time_series_plot}
 ## Calculations
 avg_steps_for_each_interval <- aggregate(steps ~ interval, data=activity.data, FUN=mean)
 interval_with_max_steps <-
@@ -82,11 +82,11 @@ The **strategy** for filling in the missing values, does not have to be sophisti
 the mean for each five minute interval.
 
 * The means for each five minute interval will firstly be merged as an 'estimate' into a new, temporary
-dataframe ```activity.data.plus.estimate```.
+dataframe called ```activity.data.plus.estimate```.
 
 * Then we will ```replace``` each missing value (NA) with the correct estimate (merged into the same row) and
-use it to recreate the original ```activity.data```, now with the NA's replaced by an estimate. Also, we will
-round the estimate.
+use it to recreate the original ```activity.data``` data frame, now with the NA's replaced by an estimate.
+Also, we will round the estimate (as a number of steps can in reality only be a discrete value).
 
 ```{r}
 names(avg_steps_for_each_interval) <- c('interval', 'estimate')
@@ -99,7 +99,7 @@ activity.data$steps <- replace(activity.data$steps,
 
 ### Step 4: Make a histogram of total number of steps per day
 
-```{r}
+```{r histogram_missing_vals_imputed}
 total_nr_of_steps_per_day2 <- aggregate(activity.data$steps, by=list(activity.data$date), FUN=sum)
 hist(total_nr_of_steps_per_day2$x,
      main="Histogram of total number of steps per day",
@@ -113,7 +113,7 @@ If you count the total number of steps per day with NA values *replaced*, the me
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-```{r}
+```{r panel_plot}
 # Add a weekdays factor variable:
 
 #   I used ```format()``` and ```as.POSIXct()``` because they are not locale-specific and are available in the base-package.

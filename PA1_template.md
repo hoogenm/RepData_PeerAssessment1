@@ -44,7 +44,7 @@ hist(total_nr_of_steps_per_day$x,
      xlab="Total number of steps per day")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
+![](PA1_template_files/figure-html/histogram_1-1.png) 
 
 ## What is the average daily activity pattern?
 
@@ -70,7 +70,7 @@ text(x=interval_with_max_steps$interval, y=interval_with_max_steps$steps, col='r
      labels=paste("Max at interval", interval_with_max_steps$interval), pos=4, offset=0.2)
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
+![](PA1_template_files/figure-html/time_series_plot-1.png) 
 
 The interval (starting at) **835** contains
 the maximum (206.17) number of steps on average across all the
@@ -95,11 +95,11 @@ The **strategy** for filling in the missing values, does not have to be sophisti
 the mean for each five minute interval.
 
 * The means for each five minute interval will firstly be merged as an 'estimate' into a new, temporary
-dataframe ```activity.data.plus.estimate```.
+dataframe called ```activity.data.plus.estimate```.
 
 * Then we will ```replace``` each missing value (NA) with the correct estimate (merged into the same row) and
-use it to recreate the original ```activity.data```, now with the NA's replaced by an estimate. Also, we will
-round the estimate.
+use it to recreate the original ```activity.data``` data frame, now with the NA's replaced by an estimate.
+Also, we will round the estimate (as a number of steps can in reality only be a discrete value).
 
 
 ```r
@@ -121,7 +121,7 @@ hist(total_nr_of_steps_per_day2$x,
      xlab="Total number of steps per day")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-8-1.png) 
+![](PA1_template_files/figure-html/histogram_missing_vals_imputed-1.png) 
 
 ```r
 mean(total_nr_of_steps_per_day2$x, na.rm=TRUE)
@@ -172,4 +172,4 @@ xyplot(steps ~ interval | weekday.or.weekend, data = pattern.weekday.or.weekend,
        })
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-9-1.png) 
+![](PA1_template_files/figure-html/panel_plot-1.png) 

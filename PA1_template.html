@@ -120,8 +120,8 @@ number_of_missing_values # Report it</code></pre>
 <h3>Step 2 - 3: Fill in the missing values and show a histogram</h3>
 <p>The <strong>strategy</strong> for filling in the missing values, does not have to be sophisticated: I will therefore use the mean for each five minute interval.</p>
 <ul>
-<li><p>The means for each five minute interval will firstly be merged as an ‘estimate’ into a new, temporary dataframe <code>activity.data.plus.estimate</code>.</p></li>
-<li><p>Then we will <code>replace</code> each missing value (NA) with the correct estimate (merged into the same row) and use it to recreate the original <code>activity.data</code>, now with the NA’s replaced by an estimate. Also, we will round the estimate.</p></li>
+<li><p>The means for each five minute interval will firstly be merged as an ‘estimate’ into a new, temporary dataframe called <code>activity.data.plus.estimate</code>.</p></li>
+<li><p>Then we will <code>replace</code> each missing value (NA) with the correct estimate (merged into the same row) and use it to recreate the original <code>activity.data</code> data frame, now with the NA’s replaced by an estimate. Also, we will round the estimate (as a number of steps can in reality only be a discrete value).</p></li>
 </ul>
 <pre class="r"><code>names(avg_steps_for_each_interval) &lt;- c('interval', 'estimate')
 activity.data.plus.estimate &lt;- merge(activity.data, avg_steps_for_each_interval)
